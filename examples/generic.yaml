@@ -1,0 +1,15 @@
+version: 1
+
+output:
+  type: jsonl
+  path: ./memory-traces/memory-traces.jsonl
+
+boundaries:
+  - target: my_agent.runner.run
+
+memory:
+  - target: my_agent.memory.MemoryStore
+    methods:
+      load_context: read
+      save_message: write
+      clear: delete

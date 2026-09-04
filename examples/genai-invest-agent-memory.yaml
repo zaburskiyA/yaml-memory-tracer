@@ -1,0 +1,21 @@
+version: 1
+
+output:
+  type: jsonl
+  path: ./memory-traces/memory-traces.jsonl
+
+boundaries:
+  - target: app.agent.runner.run_research
+  - target: app.orchestrator.graph.finalize_session
+
+memory:
+  - target: app.memory.store.MemoryStore
+    methods:
+      build_context: read
+      get_working: read
+      append_turn: write
+      persist_dialog: write
+      save_episodes: write
+      save_semantics: write
+      save_agent_policy: write
+      clear_working: delete
